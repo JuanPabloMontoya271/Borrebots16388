@@ -42,27 +42,56 @@ href= https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01e
              var canvasX = Math.round(e.clientX-r.left)*w
              ctx.beginPath();
              var y = Math.round (e.clientY - 0)*h
-             if (y>154000){
-                 y = 154000
+            //  if (y>154000){
+            //      y = 154000
                 
-             } else {
-                y= Math.round (e.clientY - 0)*h
-             }
-             
+            //  } else {
+            //     y= Math.round (e.clientY - 0)*h
+            //  }
+             //lago
              ctx.clearRect (0,0,c.width,c.height-r.top)
-             ctx.fillStyle= "blue"
-             ctx.fillRect (0,h-50,w,50)
-             ctx.fillStyle="green"
+            //  ctx.fillStyle= "blue"
+            //  ctx.fillRect (0,h-50,w,50)
+            
+            for(i=0;
+            i<=7;i++)
+            {
+            ctx.beginPath();
+            ctx.moveTo(w/6*i, 0);
+            ctx.lineTo(w/6*i, h);
+            ctx.stroke();}
+
+            for(i=0;
+            i<=7;i++)
+            {
+            ctx.beginPath();
+            ctx.moveTo(0, h/6*i);
+            ctx.lineTo(w, h/6*i);
+            ctx.stroke();}
+
+             //pato
+             pato (ctx,{cabeza:"pink",eye:"orange",pico:"lightblue",body:"brown"},w,h,document,canvasX,y)
+             foundation (ctx,encuadre(.5,1.5,w),encuadre(.5,1.5,h),"blue",w,h)
+             })
+             function pato (ctx,color,w,h,document,canvasX,y){
+             ctx.fillStyle=color.cabeza
              ctx.fillRect (canvasX/document.body.clientWidth,y/document.body.clientHeight,20,20)
-             ctx.fillStyle="white"
+             ctx.fillStyle=color.eye
              ctx.fillRect (canvasX/document.body.clientWidth+5 ,y/document.body.clientHeight+5 ,5,5)
-             ctx.fillStyle="red"
+             ctx.fillStyle=color.pico
              ctx.fillRect (canvasX/document.body.clientWidth+20 ,y/document.body.clientHeight+5 ,10,10)
-             ctx.fillStyle="brown"
+             ctx.fillStyle=color.body
              ctx.fillRect (canvasX/document.body.clientWidth-30 ,y/document.body.clientHeight+20 ,50,30)
              ctx.fillText ("x="+canvasX +", y="+y,10,20)
-
-             })
+             }
+             function encuadre (i,j,w){
+                 return w/6*(i+j)/2
+             }
+             function foundation (ctx,x,y,color,w,h){
+                 ctx.fillStyle=color
+                 ctx.fillRect (x,y,w/6,h/6*1.7)
+                
+             }
          //ctx.ellipse (c)
         // ctx.moveTo(10,0);
         // ctx.lineTo (10,h);
