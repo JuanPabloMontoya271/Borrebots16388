@@ -53,6 +53,7 @@ href= https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01e
             //  ctx.fillStyle= "blue"
             //  ctx.fillRect (0,h-50,w,50)
             
+            ctx.strokeStyle= "black"
             for(i=0;
             i<=7;i++)
             {
@@ -68,10 +69,37 @@ href= https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01e
             ctx.moveTo(0, h/6*i);
             ctx.lineTo(w, h/6*i);
             ctx.stroke();}
+            
 
-             //pato
+             //EXTRAS
              pato (ctx,{cabeza:"pink",eye:"orange",pico:"lightblue",body:"brown"},w,h,document,canvasX,y)
-             foundation (ctx,encuadre(.5,1.5,w),encuadre(.5,1.5,h),"blue",w,h)
+             tapete (ctx,encuadre(.5,1.5,2*w),encuadre(.5,1.5,2.3*h),"gray",w,1.5*h)
+             puentes (ctx,encuadre(.5,1.5,2*w),encuadre(.5,1.5,2.65*h),"yellow",w,h)
+             puentes (ctx,encuadre(.5,1.5,2*w),encuadre(.5,1.5,3.1*h),"yellow",w,h)
+             //LADO DER
+             foundation (ctx,encuadre (.5,1.5,3.25*w), encuadre (.5,1.5,.2*h),"red",w,h)
+             cuadros (ctx,encuadre (1,1,5*w),encuadre(1,1,5*h),"blue",w,h)
+             skystones (ctx,encuadre(2,5.6,w),encuadre(1,1,5*h),"yellow",w,h)
+             skystones (ctx,encuadre(2,5.6,w),encuadre(1,1,4*h),"yellow",w,h)
+             skystones (ctx,encuadre(2,5.6,w),encuadre(1,1,4.3*h),"yellow",w,h)
+             skystones (ctx,encuadre(2,5.6,w),encuadre(1,1,4.6*h),"yellow",w,h)
+             skystones (ctx,encuadre(2,5.6,w),encuadre(1,1,5*h),"yellow",w,h)
+             skystones (ctx,encuadre(2,5.6,w),encuadre(1,1,5.3*h),"yellow",w,h)
+             skystones (ctx,encuadre(2,5.6,w),encuadre(1,1,5.6*h),"yellow",w,h)
+             puentes (ctx,encuadre(.5,1.5,4*w),encuadre(.5,1.5,2.65*h),"red",w,h)
+             puentes (ctx,encuadre(.5,1.5,4*w),encuadre(.5,1.5,3.1*h),"red",w,h)
+             //LADO IZQ
+             foundation (ctx,encuadre(.5,1.5,2*w),encuadre(.5,1.5,.2*h),"blue",w,h)
+             cuadros (ctx,encuadre (1,1,0*w),encuadre(1,1,5*h),"red",w,h)
+             skystones (ctx,encuadre(2,2,w),encuadre(1,1,5*h),"yellow",w,h)
+             skystones (ctx,encuadre(2,2,w),encuadre(1,1,4*h),"yellow",w,h)
+             skystones (ctx,encuadre(2,2,w),encuadre(1,1,4.3*h),"yellow",w,h)
+             skystones (ctx,encuadre(2,2,w),encuadre(1,1,4.6*h),"yellow",w,h)
+             skystones (ctx,encuadre(2,2,w),encuadre(1,1,5*h),"yellow",w,h)
+             skystones (ctx,encuadre(2,2,w),encuadre(1,1,5.3*h),"yellow",w,h)
+             skystones (ctx,encuadre(2,2,w),encuadre(1,1,5.6*h),"yellow",w,h)
+             puentes (ctx,encuadre(.5,1.5,0*w),encuadre(.5,1.5,2.65*h),"blue",w,h)
+             puentes (ctx,encuadre(.5,1.5,0*w),encuadre(.5,1.5,3.1*h),"blue",w,h)
              })
              function pato (ctx,color,w,h,document,canvasX,y){
              ctx.fillStyle=color.cabeza
@@ -89,8 +117,27 @@ href= https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01e
              }
              function foundation (ctx,x,y,color,w,h){
                  ctx.fillStyle=color
-                 ctx.fillRect (x,y,w/6,h/6*1.7)
+                 ctx.fillRect (x,y,w/8,h/6*1.7)
                 
+             }
+             function cuadros (ctx,x,y,color,w,h){
+                 ctx.strokeStyle=color
+                 ctx.strokeRect(x,y,w/6,h/6)
+                 
+             }
+             function skystones (ctx,x,y,color,w,h){
+                 ctx.fillStyle=color
+                 ctx.fillRect (x,y,w/30,h/18)
+             }
+             function puentes (ctx,x,y,color,w,h){
+                 ctx.fillStyle=color
+                 ctx.fillRect (x,y,w/3,h/24)
+
+             }
+             function tapete (ctx,x,y,color,w,h){
+                 ctx.fillStyle=color
+                 ctx.fillRect (x,y,w/3,h/6)
+
              }
          //ctx.ellipse (c)
         // ctx.moveTo(10,0);
