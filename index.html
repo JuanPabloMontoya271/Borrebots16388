@@ -41,41 +41,159 @@ href= https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01e
              var r= c.getBoundingClientRect ()
              var canvasX = Math.round(e.clientX-r.left)*w
              ctx.beginPath();
+             var WF = w/6*1.3
+             var HF = h/6*.8
              var y = Math.round (e.clientY - 0)*h
-             if (y>154000){
-                 y = 154000
-                
-             } else {
-                y= Math.round (e.clientY - 0)*h
+
+            
+             ctx.clearRect (0,0,c.width,c.height-r.top)
+/*           ctx.fillStyle= "blue"
+             ctx.fillRect (0,h-50,w,50) */
+             for(i=0;i<=7;i++) {
+                ctx.strokeStyle="black"
+                ctx.beginPath()
+                ctx.moveTo(w/6*i,0)
+                ctx.lineTo(w/6*i,h)
+                ctx.stroke()}
+             for(i=0;i<=7;i++) {
+                ctx.strokeStyle="black"
+                ctx.beginPath()
+                ctx.moveTo(0,h/6*i)
+                ctx.lineTo(w,h/6*i)
+                ctx.stroke()}
+
+             foundation(ctx,encuadre(.3,w),encuadre(4,h),"blue",w,h,WF,HF)
+             foundation(ctx,encuadre(.3,w),encuadre(6.4,h),"red",w,h,WF,HF)
+
+             building(ctx,w,6,1,0,0,h,6,1,"blue")
+             building(ctx,w,6,1,h,0,h,6,5,"red")
+
+             loading(ctx,w,6,5,0,w,h,6,1,"red")
+             loading(ctx,w,6,5,h,w,h,6,5,"blue")
+
+             bridgeNeutral(ctx,"black","yellow")
+
+             pato(ctx,{cabeza:"pink",ojo:"white",pico:"blue",cuerpo:"orange"},w,h,document,canvasX,y,WF,HF)
+
+             bridgeAlliance(ctx,w,0,h,1,"blue")
+             bridgeAlliance(ctx,w,h,h,2,"red")
+             
+            })
+
+            //funciones
+             function encuadre(i,w) {
+                 return w/6*(i)/2
+             }
+             function foundation(ctx,x,y,color,w,h,WF,HF) {
+                 ctx.fillStyle=color; 
+                 ctx.fillRect(x,y,WF,HF);    
+             }
+             function pato(ctx,color,w,h,document,canvasX,y,WF,HF) {
+                X=canvasX/document.body.clientWidth
+                Y=y/document.body.clientHeight
+                if(X>encuadre(.3,w)&&X<encuadre(.3,w)+WF) {
+                    if(Y>encuadre(4,h)&&Y<encuadre(4,h)+HF) {
+                        var x1=Math.abs(X-encuadre(.3,w))
+                        var x2=Math.abs(X-encuadre(.3,w)-WF)
+                        
+                        X=Math.min(x1,x2)
+                    
+                        var y1=Math.abs(Y-encuadre(4,h))
+                        var y2=Math.abs(Y-encuadre(4,h)-HF)
+
+                        Y=Math.min(y1,y2)
+                    }
+                    else if(Y>encuadre(6.4,h)&&Y<encuadre(6.4,h)+HF) { 
+                        var x12=Math.abs(X-encuadre(.3,w))
+                        var x22=Math.abs(X-encuadre(.3,w)-WF)
+                        
+                        X=Math.min(x12,x22)
+
+                        var y12=Math.abs(Y-encuadre(6.4,h))
+                        var y22=Math.abs(Y-encuadre(6.4,h)-HF)
+
+                        Y=Math.min(y12,y22)    
+                    }
+                }
+                ctx.fillStyle=color.cabeza
+                ctx.fillRect(X,Y,20,20)
+                ctx.fillStyle=color.ojo
+                ctx.fillRect(X+5,Y+5,5,5)
+                ctx.fillStyle=color.pico
+                ctx.fillRect(X+20,Y+5 ,10,10)
+                ctx.fillStyle=color.cuerpo
+                ctx.fillRect(X-30,Y+20,50,30)
+                ctx.fillText("x="+X+",y="+Y,10,20)
+             }
+             function building(ctx,w,dw,mw,h,W,H,dH,mH,color) {
+                ctx.strokeStyle=color
+                ctx.beginPath()
+                ctx.moveTo(w/dw*mw,h)
+                ctx.lineTo(W,H/dH*mH)
+                ctx.stroke()
+             } 
+             function loading(ctx,w,dw,mw,h,W,H,dH,mH,color) {
+                ctx.strokeStyle=color
+                ctx.beginPath()
+                ctx.moveTo(w/dw*mw,h)
+                ctx.lineTo(w/dw*mw,H/dH*mH)
+                ctx.lineTo(W,H/dH*mH)
+                ctx.stroke()
+             } 
+             function bridgeAlliance(ctx,w,h,H,mH,color) {
+                ctx.strokeStyle=color
+                ctx.beginPath()
+                ctx.moveTo(w/2,h)
+                ctx.lineTo(w/2,H/3*mH)
+                ctx.stroke()
+             }
+             function bridgeNeutral(ctx,colorRect,colorStroke) {
+                ctx.fillStyle=colorRect
+                ctx.fillRect(w/18*8,h/3,w/18*2,h/3)
+                ctx.strokeStyle=colorStroke
+                ctx.beginPath()
+                ctx.moveTo(w/2,h/3)
+                ctx.lineTo(w/2,h/3*2)
+                ctx.stroke()
              }
              
-             ctx.clearRect (0,0,c.width,c.height-r.top)
-             ctx.fillStyle= "blue"
-             ctx.fillRect (0,h-50,w,50)
-             ctx.fillStyle="green"
-             ctx.fillRect (canvasX/document.body.clientWidth,y/document.body.clientHeight,20,20)
-             ctx.fillStyle="white"
-             ctx.fillRect (canvasX/document.body.clientWidth+5 ,y/document.body.clientHeight+5 ,5,5)
-             ctx.fillStyle="red"
-             ctx.fillRect (canvasX/document.body.clientWidth+20 ,y/document.body.clientHeight+5 ,10,10)
-             ctx.fillStyle="brown"
-             ctx.fillRect (canvasX/document.body.clientWidth-30 ,y/document.body.clientHeight+20 ,50,30)
-             ctx.fillText ("x="+canvasX +", y="+y,10,20)
+             /* izq arriba 
+                    ctx.beginPath()
+                    ctx.moveTo(w/6,0)
+                    ctx.lineTo(0,h/6)
+                    ctx.stroke()
+                izq abajo 
+                    ctx.beginPath()
+                    ctx.moveTo(w/6,h)
+                    ctx.lineTo(0,h/6*5)
+                    ctx.stroke() 
+                der arriba 
+                    ctx.beginPath()
+                    ctx.moveTo(w/6*5,0)
+                    ctx.lineTo(w/6*5,h/6)
+                    ctx.lineTo(w,h/6)
+                    ctx.stroke()
+                der abajo 
+                    ctx.beginPath()
+                    ctx.moveTo(w/6*5,h)
+                    ctx.lineTo(w/6*5,h/6*5)
+                    ctx.lineTo(w,h/6*5)
+                    ctx.stroke()*/ 
 
-             })
-         //ctx.ellipse (c)
-        // ctx.moveTo(10,0);
-        // ctx.lineTo (10,h);
-        // var x=w/4, y = 10, x_max = w/2, y_max = h-20 ;
-        // for (var j= 0; j<5; i++){
 
-        //     ctx.moveTo(3*w/4, y)
-        //     ctx.lineTo(3*w/4, y_max+10)
-        //     ctx.stroke();
+    /*   ctx.ellipse (c)
+         ctx.moveTo(10,0);
+         ctx.lineTo (10,h);
+         var x=w/4, y = 10, x_max = w/2, y_max = h-20 ;
+         for (var j= 0; j<5; i++){
+
+             ctx.moveTo(3*w/4, y)
+             ctx.lineTo(3*w/4, y_max+10)
+             ctx.stroke();
             
-        // }
-        // ctx.rect(x, y, x_max, y_max);
-        // ctx.stroke();
+         }
+         ctx.rect(x, y, x_max, y_max);
+         ctx.stroke(); */
     </script>
 
 </body>    
